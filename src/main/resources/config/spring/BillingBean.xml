@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	
+
+	<bean id="billingBo" class="com.suv.flat.bill.bo.impl.BillingBoImpl" >
+		<property name="globalBillDao" ref="globalBillDao" />
+		<property name="flatBillDao" ref="flatBillDao" />
+		<property name="accountsDao" ref="accountsDao" />
+	</bean>
+	
+   	<bean id="globalBillDao" class="com.suv.flat.bill.dao.impl.GlobalBillDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="flatBillDao" class="com.suv.flat.bill.dao.impl.FlatBillDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="globalBillDao" ref="globalBillDao" />
+	</bean>
+	
+</beans>
