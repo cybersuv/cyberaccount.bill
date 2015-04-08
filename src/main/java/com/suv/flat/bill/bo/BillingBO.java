@@ -23,7 +23,7 @@ public interface BillingBO {
 	
 	public TxResponse updateFlatBill(FlatBill bill);
 	
-	public GlobalBill getFlatBill(FlatBill bill);
+	public FlatBill getFlatBill(FlatBill bill);
 	
 	public TxResponse deleteFlatBill(FlatBill bill);
 	
@@ -44,6 +44,8 @@ public interface BillingBO {
 	public String getGlobalBillReportHtml(List<GlobalBill> billList);
 	
 	public String getFlatBillReportHtml(List<FlatBill> billList);
+	
+	public String getSummarisedBillReport(String monthStr);
 	
 	
 

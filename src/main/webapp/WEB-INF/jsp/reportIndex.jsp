@@ -22,7 +22,7 @@
 <td><a href="javascript:getFBReport()">Flat Bills</a></td>
 </tr>
 <tr>
-<td><a href="javascript:getReasonsReport()">Processed Billing Report</a></td>
+<td><a href="javascript:getSummaryReport()">Processed Billing Report</a></td>
 </tr>
 </table>
 <br></br>
@@ -45,8 +45,8 @@ function getFBReport(){
 		});
 }
 
-function getReasonsReport(){
-	$.get( "${contextPath}/getAllReasons", function( data ) {
+function getSummaryReport(){
+	$.get( "${contextPath}/getSummaryReportUI", function( data ) {
 		$('#container').html(data);
 		});
 }

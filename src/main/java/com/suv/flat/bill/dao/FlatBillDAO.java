@@ -21,5 +21,7 @@ public interface FlatBillDAO {
 	public long getTotalFlatBillUnit(String monthStr);
 	
 	public TxResponse updateGlobalFlatBillSubMeterReading(String monthStr);
+	
+	public TxResponse processMonthlyBill(String monthStr);
 
 }

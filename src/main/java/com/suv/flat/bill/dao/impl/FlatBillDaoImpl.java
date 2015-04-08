@@ -1,12 +1,11 @@
 package com.suv.flat.bill.dao.impl;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.hql.internal.ast.tree.UpdateStatement;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.suv.flat.bill.common.Constants;
@@ -68,10 +67,14 @@ public class FlatBillDaoImpl extends HibernateDaoSupport implements FlatBillDAO 
 			tx.setResponseId(paramBill.getFlatBillId());
 			tx.setResponseMsg("Flat Bill ID " + paramBill.getFlatBillId()
 					+ " has been succesfully updated.");
+			System.out.println("Flat Bill ID " + paramBill.getFlatBillId()
+					+ " has been succesfully updated.");
 		} catch (Exception ex) {
 			tx.setStatus(false);
 			tx.setResponseId(-1);
 			tx.setResponseMsg("Exception occured in Flat Bill updation. Mested message is : "
+					+ ex.getMessage());
+			System.out.println("Exception occured in Flat Bill updation. Mested message is : "
 					+ ex.getMessage());
 		}
 		return tx;
@@ -79,8 +82,7 @@ public class FlatBillDaoImpl extends HibernateDaoSupport implements FlatBillDAO 
 
 	@Override
 	public FlatBill getBill(FlatBill paramBill) {
-		// TODO Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(FlatBill.class, paramBill.getFlatBillId());
 	}
 
 	@Override
@@ -144,6 +146,56 @@ public class FlatBillDaoImpl extends HibernateDaoSupport implements FlatBillDAO 
 			tx.setResponseId(-1);
 			ex.printStackTrace();
 		}
+		return tx;
+	}
+
+	@Override
+	public TxResponse processMonthlyBill(String monthStr) {
+		/** Method variables **/
+		TxResponse tx=new TxResponse();
+		long totalFlatUnit=0;
+		long totalCommonUnit=0;
+		double commonMeterBillAmt=0.00;
+		double flatMeterBillAmt=0.00;
+		long totalSubMeterUnit=0;
+		double unitRateForFlats=0.00;
+		double commonChargePerFlat=0.00;
+		DecimalFormat f = new DecimalFormat("##.00");
+		
+		/** Process Global Bills for the Month **/
+		
+		GlobalBill flatMeterBill = globalBillDao.getGlobalBillByMonthAndType(monthStr, Constants.METER_TYPE_FLAT);
+		GlobalBill commonMeterBill = globalBillDao.getGlobalBillByMonthAndType(monthStr, Constants.METER_TYPE_COMMON);
+		
+		totalFlatUnit = flatMeterBill.getConsumptionUnit();
+		totalCommonUnit=commonMeterBill.getConsumptionUnit();
+		flatMeterBillAmt=flatMeterBill.getBillAmount();
+		commonMeterBillAmt=commonMeterBill.getBillAmount();
+		totalSubMeterUnit=this.getTotalFlatBillUnit(monthStr);
+		
+		unitRateForFlats= Double.parseDouble(f.format(Math.ceil(Double.parseDouble(f.format(flatMeterBillAmt/totalSubMeterUnit))*10)/10));
+		commonChargePerFlat=Math.ceil(commonMeterBillAmt/10);
+		
+		/** Get all flatBill Entries to process **/
+		List<FlatBill> flatBills=this.getBills(monthStr);
+		FlatBill tempBill;
+		
+		for(int i=0;i<flatBills.size();i++){
+			tempBill=flatBills.get(i);
+			tempBill.setRatePerUnit(unitRateForFlats);
+			tempBill.setCommonMeterCharge(commonChargePerFlat);
+			tempBill.computeBillingComponnets();
+			if(this.updateBill(tempBill).isStatus()){
+				System.out.println("Bill processed successfully for " + tempBill.getAccount().getOwnerName());
+			}else{
+				System.out.println("Bill process failed for " + tempBill.getAccount().getOwnerName());
+			}
+		}
+		
+		tx.setStatus(true);
+		tx.setResponseMsg("Billing for " + monthStr + " processed successfully.");
+		
+		
 		return tx;
 	}
 

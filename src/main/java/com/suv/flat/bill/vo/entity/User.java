@@ -33,9 +33,9 @@ public class User {
 	@Column(name="user_create_date")
 	private Date create_date;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="org_id")
-	private Organisation organisation;
+	private Organisation organisation;*/
 	
 	public User(){
 		this.userid=-1;
@@ -82,20 +82,20 @@ public class User {
 		this.create_date = create_date;
 	}
 
-	public Organisation getOrganisation() {
+	/*public Organisation getOrganisation() {
 		return organisation;
 	}
 
 	public void setOrganisation(Organisation organisation) {
 		this.organisation = organisation;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", user_name=" + user_name
 				+ ", user_login=" + user_login + ", password=" + password
 				+ ", userRole=" + userRole + ", create_date=" + create_date
-				+ ", organisation=" + organisation + "]";
+				+  "]";
 	}
 	
 	

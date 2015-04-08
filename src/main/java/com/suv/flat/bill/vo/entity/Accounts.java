@@ -26,7 +26,7 @@ public class Accounts {
 	private String flatNumber;
 	
 	@Column(name="floor")
-	private int floor;
+	private String floor;
 	
 	@Column(name="is_active")
 	private int isActive;
@@ -37,8 +37,8 @@ public class Accounts {
 	@Column(name="mod_date")
 	private Date modDate;
 	
-	@Column(name="org_id")
-	private int orgId;
+	/*@Column(name="org_id")
+	private int orgId;*/
 	
 	/*@OneToMany(fetch = FetchType.LAZY,mappedBy="account")
 	private List<FlatBill> flatBills;
@@ -76,11 +76,11 @@ public class Accounts {
 		this.flatNumber = flatNumber;
 	}
 
-	public int getFloor() {
+	public String getFloor() {
 		return floor;
 	}
 
-	public void setFloor(int floor) {
+	public void setFloor(String floor) {
 		this.floor = floor;
 	}
 
@@ -108,20 +108,20 @@ public class Accounts {
 		this.modDate = modDate;
 	}
 
-	public int getOrgId() {
+	/*public int getOrgId() {
 		return orgId;
 	}
 
 	public void setOrgId(int orgId) {
 		this.orgId = orgId;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		return "Accounts [ownerId=" + ownerId + ", ownerName=" + ownerName
 				+ ", flatNumber=" + flatNumber + ", floor=" + floor
 				+ ", isActive=" + isActive + ", createDate=" + createDate
-				+ ", modDate=" + modDate + ", orgId=" + orgId + "]";
+				+ ", modDate=" + modDate +  "]";
 	}
 	
 	

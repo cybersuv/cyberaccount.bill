@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,13 +12,17 @@
 <body>
 <center>
 <form:form id="flatBillForm" action="#" method="POST">
+
 <table class="formtable" cellspacing="0" >
 <tr>
 <td colspan="2" bgcolor="#848484" align="center"><font color="white">Flat Bill Entry</font></td>
 </tr>
 <tr>
 <td>Account</td>
-<td><form:input id="owner_name" type="text" path="account.ownerName" /><form:input id="owner_id" type="hidden" path="account.ownerId"/></td>
+<td><form:input id="owner_name" type="text" path="account.ownerName" />
+<form:input id="owner_id" type="hidden" path="account.ownerId"/>
+<form:input type="hidden" path="flatBillId"/>
+<input type="hidden" name="operation" value="${operation}"/></td>
 </tr>
 <tr>
 <td>Month</td>

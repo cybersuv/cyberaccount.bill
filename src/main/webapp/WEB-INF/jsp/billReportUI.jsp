@@ -27,7 +27,7 @@
 </table>
 </form>
 <br></br>
-
+<div id="dialog-msg" title="Delete Record"></div>
 <div id="resultcontainer" style="min-width: 700px" >
 </div>
 </center>
@@ -60,7 +60,8 @@ $(document).ready(function() {
 	var posting = $.post( url, postData );
 	// Put the results in a div
 	posting.done(function( data ) {
-		$( "#resultcontainer" ).empty().append(data);
+		
+		$("#resultcontainer").empty().append(data);
 	});
 	});
   

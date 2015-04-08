@@ -14,16 +14,16 @@ public class UserRole {
 	@Id @GeneratedValue
 	@Column(name="user_type_id")
 	//@OneToMany(fetch=FetchType.EAGER, mappedBy="userRoleId")
-	private long userRoleId;
+	private int userRoleId;
 	
 	@Column(name="user_type_name")
 	private String userRole;
 
-	public long getUserRoleId() {
+	public int getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(long userRoleId) {
+	public void setUserRoleId(int userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 

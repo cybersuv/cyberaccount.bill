@@ -1,5 +1,6 @@
 package com.suv.flat.bill.vo.entity;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,10 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="flat_bill")
 public class FlatBill {
+	@Transient
+	DecimalFormat f = new DecimalFormat("##.00");
 	
 	@Id @GeneratedValue
 	@Column(name="flat_bill_id")
@@ -174,6 +179,23 @@ public class FlatBill {
 				+ totalRoundOff + ", account=" + account + "]";
 	}
 	
+	private double getComputedConsumptionCharge(){
+		return Double.parseDouble(f.format(this.consumptionUnit*this.ratePerUnit));
+	}
+	
+	private double getTotalPayableAmount(){
+		return Double.parseDouble(f.format(this.consumptionCharge+this.commonMeterCharge));
+	}
+	
+	private double getTotalPayableRoundOff(){
+		return Math.ceil(this.totalPayable);
+	}
+	
+	public void computeBillingComponnets(){
+		this.consumptionCharge=getComputedConsumptionCharge();
+		this.totalPayable=getTotalPayableAmount();
+		this.totalRoundOff=getTotalPayableRoundOff();
+	}
 	
 
 }

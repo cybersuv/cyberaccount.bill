@@ -36,20 +36,51 @@ public class GlobalBillDaoImpl extends HibernateDaoSupport implements GlobalBill
 
 	@Override
 	public TxResponse updateBill(GlobalBill paramBill) {
-		// TODO Auto-generated method stub
-		return null;
+		TxResponse tx = new TxResponse();
+		try {
+			// getHibernateTemplate().flush();
+			System.out.println("Going to update : " + paramBill);
+			getHibernateTemplate().update(paramBill);
+			tx.setStatus(true);
+			tx.setResponseId(paramBill.getGlobalBillId());
+			tx.setResponseMsg("Global Bill ID " + paramBill.getGlobalBillId()
+					+ " has been succesfully updated.");
+			System.out.println("Global Bill ID " + paramBill.getGlobalBillId()
+					+ " has been succesfully updated.");
+		} catch (Exception ex) {
+			tx.setStatus(false);
+			tx.setResponseId(-1);
+			tx.setResponseMsg("Exception occured in Global Bill updation. Nested message is : "
+					+ ex.getMessage());
+			System.out.println("Exception occured in Global Bill updation. Nested message is : "
+					+ ex.getMessage());
+		}
+		return tx;
 	}
 
 	@Override
 	public GlobalBill getBill(GlobalBill paramBill) {
-		// TODO Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(GlobalBill.class, paramBill.getGlobalBillId());
 	}
 
 	@Override
 	public TxResponse deleteBill(GlobalBill paramBill) {
-		// TODO Auto-generated method stub
-		return null;
+		TxResponse tx = new TxResponse();
+		try {
+			// getHibernateTemplate().flush();
+			System.out.println("Going to delete : " + paramBill);
+			getHibernateTemplate().delete(paramBill);
+			tx.setStatus(true);
+			tx.setResponseId(paramBill.getGlobalBillId());
+			tx.setResponseMsg("Global Bill[" + paramBill.getGlobalBillId()
+					+ "] has been succesfully deleted.");
+		} catch (Exception ex) {
+			tx.setStatus(false);
+			tx.setResponseId(-1);
+			tx.setResponseMsg("Exception occured in Global Bill deeltion. Mested message is : "
+					+ ex.getMessage());
+		}
+		return tx;
 	}
 
 	

@@ -16,7 +16,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 			</props>
 		</property>
 
@@ -24,7 +24,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		
 		<property name="annotatedClasses">
 			<list>
-				<value>com.suv.flat.bill.vo.entity.Organisation</value>
+				<!-- <value>com.suv.flat.bill.vo.entity.Organisation</value>-->
 				<value>com.suv.flat.bill.vo.entity.User</value>
 				<value>com.suv.flat.bill.vo.entity.UserRole</value>
 				<value>com.suv.flat.bill.vo.entity.Accounts</value>

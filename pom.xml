@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.suv.flat.bill</groupId>
-	<artifactId>flataccount.bill</artifactId>
+	<artifactId>cyberbill</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>flataccount.bill Maven Webapp</name>
@@ -170,7 +170,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>flataccount.bill</finalName>
+		<finalName>cyberbill</finalName>
 		<plugins>
 			<!-- Eclipse project -->
 			<plugin>
