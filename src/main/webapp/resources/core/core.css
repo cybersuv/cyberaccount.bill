@@ -1,0 +1,117 @@
+html{
+	height:100%;
+}
+
+.top-header,
+.top-header h1,
+.top-header span,
+.top-header input,
+.top-header label {
+	border: 0;
+	outline: 0;
+}
+.top-header {
+	width: 100%;
+	height: 100px;
+	background-color: #919EAC;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+	box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+}
+
+
+.title-pane {
+	position: absolute;
+	left:10px;
+	z-index:999;
+	top: 20px;
+	padding: 1px 1px 1px 1px;
+	margin: 0 auto;
+	
+}
+.strong-text {
+	text-indent: 50px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.title-text {
+	text-indent: 50px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.menu-bar {
+	display:table-cell;
+	vertical-align: top;
+ 	width:150px;
+	margin-right: 6px;
+	margin-top: 5px;
+	padding: 5px;
+	
+}
+
+div.vertical-line{
+  display:table-cell;
+  vertical-align: top;
+  width: 1px; /* Line width */
+  padding: 0px;
+  background-color: #919EAC; /* Line color */
+  height: 100%; /* Override in-line if you want specific height. */
+  /* position:fixed;
+  top: 115px;
+  left : 165px; */ /* Causes the line to float to left of content. 
+    You can instead use position:absolute or display:inline-block
+    if this fits better with your design */
+}
+
+.container {
+	display:table-cell;
+	vertical-align: top;
+	border: 1px solid;
+    border-color:#919EAC;
+	border-radius: 5px;
+	padding: 5px;
+	width:auto;
+	height: 100%;
+}
+
+.ui-tooltip
+{
+    font-size:10pt;
+    font-family:Calibri;
+}
+
+div.ui-datepicker{
+ font-size:10px;
+}
+
+table.formtable {
+    border-collapse: collapse;
+    margin-top:20px;
+    min-width: 250px;
+    border: 1px solid black;
+    font-size:14px;
+}
+
+table.datatable {
+    border-collapse: collapse;
+    margin-top:20px;
+    min-width: 250px;
+    border: 1px solid black;
+    font-size:14px;
+}
+
+td.datacell{
+	border-collapse: collapse;
+	border: 1px solid black;
+	color: black;
+}

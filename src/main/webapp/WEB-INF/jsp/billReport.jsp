@@ -7,12 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FlatAccount :: Owners</title>
-<script src="<c:url value="/resources/core/jquery.min.js" />"></script>
+<%-- <script src="<c:url value="/resources/core/jquery.min.js" />"></script>
 <script src="<c:url value="/resources/core/jquery.printElement.min.js" />"></script>
 <script src="<c:url value="/resources/ui/jquery-ui.js" />"></script>
 
 <link href="<c:url value="/resources/ui/jquery-ui.css" />" rel="stylesheet" media="all">
-<link href="<c:url value="/resources/core/core.css" />" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/core/core.css" />" rel="stylesheet" media="all"> --%>
 <style type="text/css" media="print">
    .no-print { display: none; }
 </style>
